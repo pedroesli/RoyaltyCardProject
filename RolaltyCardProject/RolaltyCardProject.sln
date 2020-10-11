@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30523.141
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RolaltyCardProject", "RolaltyCardProject\RolaltyCardProject.csproj", "{68F574B9-EF70-4939-8364-548628BC89BE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{68F574B9-EF70-4939-8364-548628BC89BE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{68F574B9-EF70-4939-8364-548628BC89BE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{68F574B9-EF70-4939-8364-548628BC89BE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{68F574B9-EF70-4939-8364-548628BC89BE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {07018F36-4493-46A6-AD65-798F5AA5E281}
+	EndGlobalSection
+EndGlobal
