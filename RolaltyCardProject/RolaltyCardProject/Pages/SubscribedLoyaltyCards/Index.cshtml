@@ -1,0 +1,38 @@
+﻿@page
+@model RolaltyCardProject.Pages.SubscribedLoyaltyCards.IndexModel
+@{
+    Layout = "_Layout";
+}
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>@Html.DisplayNameFor(n => n.ClientCards.FirstOrDefault().LoyaltyCard.CardName)</th>
+            <th>@Html.DisplayNameFor(n => n.ClientCards.FirstOrDefault().LoyaltyCard.Description)</th>
+            <th>@Html.DisplayNameFor(n => n.ClientCards.FirstOrDefault().Points)</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model.ClientCards.Count > 0)
+        {
+            int i = 1;
+
+            @foreach (var card in Model.ClientCards)
+            {
+                <tr>
+                    <th scope="row">@(i++)</th>
+                    <td>@card.LoyaltyCard.CardName</td>
+                    <td>@card.LoyaltyCard.Description</td>
+                    <td>@card.Points out of @card.LoyaltyCard.TotalPoints</td>
+                </tr>
+            }
+        }
+        else
+        {
+            <tr>
+                <td colspan="4" class="text-center">User is not subscribed to any Loyalty Card</td>
+            </tr>
+        }
+    </tbody>
+</table>

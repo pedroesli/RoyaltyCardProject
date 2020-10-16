@@ -1,0 +1,8 @@
+﻿
+<ul class="nav nav-pills flex-column">
+    <li class="nav-item"><a class="nav-link @ManageAdminNavPages.GetCurrentNavClass(ViewContext,ManageAdminNavPages.AdminPanel)" id="panel" asp-page="/AdminPanel/Index">Panel</a></li>
+    <li class="nav-item"><a class="nav-link @ManageAdminNavPages.GetCurrentNavClass(ViewContext,ManageAdminNavPages.ClientUsers)" id="client-users" asp-page="/AdminPanel/ClientUsers/Index">Client Users</a></li>
+    <li class="nav-item"><a class="nav-link @ManageAdminNavPages.GetCurrentNavClass(ViewContext,ManageAdminNavPages.BusinessUsers)" id="business-users" asp-page="/AdminPanel/BusinessUsers/Index">Business Users</a></li>
+    <li class="nav-item"><a class="nav-link @ManageAdminNavPages.GetCurrentNavClass(ViewContext,ManageAdminNavPages.Admins)" id="admins" asp-page="/AdminPanel/Admins/Index">Admins</a></li>
+    <li class="nav-item"><a class="nav-link @ManageAdminNavPages.GetCurrentNavClass(ViewContext,ManageAdminNavPages.RoyaltyCards)" id="royalty-cards" asp-page="/AdminPanel/RoyaltyCards/Index">Royalty Cards</a></li>
+</ul>

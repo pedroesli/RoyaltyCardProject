@@ -1,0 +1,58 @@
+﻿@page
+@model RolaltyCardProject.Pages.SubscribedLoyaltyCards.FindUserModel
+@{
+    Layout = "_Layout";
+}
+
+@if (Model.FindUserViewModel.Message != null)
+{
+    <div class="alert @Model.FindUserViewModel.Message.GetAlertNavClass() alert-dismissible fade show" role="alert">
+        @Model.FindUserViewModel.Message.Text
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+}
+
+<form method="post">
+    <div class="row justify-content-center">
+        <div class="col-6">
+            <div class="form-group">
+                <label>Your Cpf</label>
+                <input asp-for="FindUserViewModel.Cpf" class="form-control" />
+                <span asp-validation-for="FindUserViewModel.Cpf" style="color:red;"></span>
+            </div>
+            <button type="submit" class="btn btn-primary">Find</button>
+            <a asp-page="../Index" class="btn btn-danger">Back</a>
+        </div>
+    </div>
+</form>
+
+@if (Model.FindUserViewModel.ClientCards != null)
+{
+    <br />
+    <table class="table">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>@Html.DisplayNameFor(n => n.FindUserViewModel.ClientCards.FirstOrDefault().LoyaltyCard.CardName)</th>
+                <th>@Html.DisplayNameFor(n => n.FindUserViewModel.ClientCards.FirstOrDefault().LoyaltyCard.Description)</th>
+                <th>@Html.DisplayNameFor(n => n.FindUserViewModel.ClientCards.FirstOrDefault().Points)</th>
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                int i = 1;
+            }
+            @foreach (var card in Model.FindUserViewModel.ClientCards)
+            {
+                <tr>
+                    <th scope="row">@(i++)</th>
+                    <td>@card.LoyaltyCard.CardName</td>
+                    <td>@card.LoyaltyCard.Description</td>
+                    <td>@card.Points out of @card.LoyaltyCard.TotalPoints</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}

@@ -9,6 +9,7 @@ namespace RolaltyCardProject.Utility
     {
         public const string AdminEndUser = "Admin"; 
         public const string BusinessEndUser = "Business"; 
-        public const string ClientEndUser = "Client"; 
+        public const string ClientEndUser = "Client";
+        public const int MaxLoyatyCards = 5;
     }
 }

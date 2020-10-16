@@ -1,0 +1,70 @@
+﻿@page
+@model RolaltyCardProject.Pages.CardCreation.IndexModel
+@{
+    Layout = "_Layout";
+}
+
+@if (Model.IsMaxLoyatyCardsFull)
+{
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        You have reached the maximum amount of Loyaty Cards. Delete one first before creating a new one.
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+}
+
+<h4 class="text-center">Business panel</h4>
+<br />
+<br />
+<form asp-page-handler="Create" method="post">
+    <div class="text-right">
+        <button class="btn btn-success">New Royalty Card</button>
+    </div>
+    <input type="hidden" asp-for="CardCreationViewModel.LoyaltyCards" />
+</form>
+<br />
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">@Html.DisplayNameFor(n => n.CardCreationViewModel.LoyaltyCards.First().CardName)</th>
+            <th scope="col">@Html.DisplayNameFor(n => n.CardCreationViewModel.LoyaltyCards.First().Header)</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model.CardCreationViewModel.LoyaltyCards.Count > 0)
+        {
+            int i = 1;
+
+            @foreach (var loyaltyCard in Model.CardCreationViewModel.LoyaltyCards)
+            {
+                <tr>
+                    <th scope="row">@(i++)</th>
+                    <th>@Html.DisplayFor(n => loyaltyCard.CardName)</th>
+                    <th>@Html.DisplayFor(n => loyaltyCard.Header)</th>
+                    <th>
+                        <div class="btn-group text-right" role="group">
+                            <a class="btn btn-outline-primary" asp-page="AddPoint" asp-route-id="@loyaltyCard.Id" asp-route-name="@loyaltyCard.CardName">Add Point To Client</a>
+                            <a class="btn btn-outline-success"><i class="fas fa-edit"></i></a>
+                            <button class="btn btn-outline-danger"><i class="fas fa-trash"></i></button>
+                        </div>
+                    </th>
+                </tr>
+            }
+        }
+        else
+        {
+            <tr>
+                <th colspan="4" class="text-center">
+                    <form asp-page-handler="Create" method="post">
+                        <button class="btn btn-success">New Royalty Card</button>
+                        <input type="hidden" asp-for="CardCreationViewModel.LoyaltyCards" />
+                    </form>
+                </th>
+            </tr>
+        }
+
+    </tbody>
+</table>

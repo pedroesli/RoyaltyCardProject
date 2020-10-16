@@ -1,0 +1,43 @@
+﻿@page
+@model RolaltyCardProject.Pages.CardCreation.CreateModel
+@{
+    Layout = "_Layout";
+}
+
+<form method="post">
+    <div class="row justify-content-center">
+        <div class="col-6">
+            <div class="form-group">
+                <label asp-for="LoyaltyCard.CardName"></label>
+                <input asp-for="LoyaltyCard.CardName" class="form-control" />
+                <span asp-validation-for="LoyaltyCard.CardName"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="LoyaltyCard.Header"></label>
+                <input asp-for="LoyaltyCard.Header" class="form-control" />
+                <span asp-validation-for="LoyaltyCard.Header"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="LoyaltyCard.Description"></label>
+                <input asp-for="LoyaltyCard.Description" class="form-control" />
+                <span asp-validation-for="LoyaltyCard.Description"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="LoyaltyCard.PrizeDescription"></label>
+                <input asp-for="LoyaltyCard.PrizeDescription" class="form-control" />
+                <span asp-validation-for="LoyaltyCard.PrizeDescription"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="LoyaltyCard.TotalPoints"></label>
+                <input asp-for="LoyaltyCard.TotalPoints" class="form-control" />
+                <span asp-validation-for="LoyaltyCard.TotalPoints"></span>
+            </div>
+            <button type="submit" class="btn btn-primary">Create</button>
+            <a asp-page="Index" class="btn btn-danger">Cancel</a>
+        </div>
+    </div>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

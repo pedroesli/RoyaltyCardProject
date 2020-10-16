@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using RolaltyCardProject.Models;
 using RolaltyCardProject.Utility;
 using System;
 using System.Collections.Generic;
@@ -40,7 +41,7 @@ namespace RolaltyCardProject.Data
             _roleManager.CreateAsync(new IdentityRole(StaticDetails.BusinessEndUser)).GetAwaiter().GetResult();
             _roleManager.CreateAsync(new IdentityRole(StaticDetails.ClientEndUser)).GetAwaiter().GetResult();
 
-            _userManager.CreateAsync(new IdentityUser
+            _userManager.CreateAsync(new AplicationUser
             {
                 UserName = "Admin",
                 Email = "admin@gmail.com",

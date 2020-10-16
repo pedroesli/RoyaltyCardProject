@@ -7,11 +7,11 @@ using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using RolaltyCardProject.Data;
 
-namespace RolaltyCardProject.Data.Migrations
+namespace RolaltyCardProject.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20201009205557_AddClientUsersAndClientCards")]
-    partial class AddClientUsersAndClientCards
+    [Migration("20201013012848_FirstMigration")]
+    partial class FirstMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -225,37 +225,17 @@ namespace RolaltyCardProject.Data.Migrations
 
             modelBuilder.Entity("RolaltyCardProject.Models.ClientCards", b =>
                 {
-                    b.Property<string>("ClientUserId")
+                    b.Property<string>("AplicationUserId")
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<int>("LoyaltyCardId")
                         .HasColumnType("int");
 
-                    b.HasKey("ClientUserId", "LoyaltyCardId");
+                    b.HasKey("AplicationUserId", "LoyaltyCardId");
 
                     b.HasIndex("LoyaltyCardId");
 
                     b.ToTable("ClientCards");
-                });
-
-            modelBuilder.Entity("RolaltyCardProject.Models.Country", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("CountryCode")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Countries");
                 });
 
             modelBuilder.Entity("RolaltyCardProject.Models.LoyaltyCard", b =>
@@ -265,7 +245,7 @@ namespace RolaltyCardProject.Data.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("BusinessUserId")
+                    b.Property<string>("AplicationUserId")
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("CardName")
@@ -285,12 +265,12 @@ namespace RolaltyCardProject.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("BusinessUserId");
+                    b.HasIndex("AplicationUserId");
 
                     b.ToTable("LoyaltyCards");
                 });
 
-            modelBuilder.Entity("RolaltyCardProject.Models.BusinessUser", b =>
+            modelBuilder.Entity("RolaltyCardProject.Models.AplicationUser", b =>
                 {
                     b.HasBaseType("Microsoft.AspNetCore.Identity.IdentityUser");
 
@@ -298,23 +278,11 @@ namespace RolaltyCardProject.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("CountryID")
-                        .HasColumnType("int");
-
-                    b.HasIndex("CountryID");
-
-                    b.HasDiscriminator().HasValue("BusinessUser");
-                });
-
-            modelBuilder.Entity("RolaltyCardProject.Models.ClientUser", b =>
-                {
-                    b.HasBaseType("Microsoft.AspNetCore.Identity.IdentityUser");
-
                     b.Property<string>("Cpf")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasDiscriminator().HasValue("ClientUser");
+                    b.HasDiscriminator().HasValue("AplicationUser");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -370,9 +338,9 @@ namespace RolaltyCardProject.Data.Migrations
 
             modelBuilder.Entity("RolaltyCardProject.Models.ClientCards", b =>
                 {
-                    b.HasOne("RolaltyCardProject.Models.ClientUser", "ClientUser")
+                    b.HasOne("RolaltyCardProject.Models.AplicationUser", "AplicationUser")
                         .WithMany("Cards")
-                        .HasForeignKey("ClientUserId")
+                        .HasForeignKey("AplicationUserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -385,18 +353,9 @@ namespace RolaltyCardProject.Data.Migrations
 
             modelBuilder.Entity("RolaltyCardProject.Models.LoyaltyCard", b =>
                 {
-                    b.HasOne("RolaltyCardProject.Models.BusinessUser", "BusinessUser")
+                    b.HasOne("RolaltyCardProject.Models.AplicationUser", "AplicationUser")
                         .WithMany("LoyaltyCards")
-                        .HasForeignKey("BusinessUserId");
-                });
-
-            modelBuilder.Entity("RolaltyCardProject.Models.BusinessUser", b =>
-                {
-                    b.HasOne("RolaltyCardProject.Models.Country", "Country")
-                        .WithMany()
-                        .HasForeignKey("CountryID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("AplicationUserId");
                 });
 #pragma warning restore 612, 618
         }

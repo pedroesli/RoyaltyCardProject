@@ -14,16 +14,14 @@ namespace RolaltyCardProject.Data
         {
             
         }
-        public DbSet<BusinessUser> BusinessUsers { get; set; }
         public DbSet<LoyaltyCard> LoyaltyCards { get; set; }
-        public DbSet<Country> Countries { get; set; }
-        public DbSet<ClientUser> ClientUsers { get; set; }
+        public DbSet<AplicationUser> AplicationUsers { get; set; }
         public DbSet<ClientCards> ClientCards { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<ClientCards>()
-                .HasKey(t => new { t.ClientUserId, t.LoyaltyCardId });
+                .HasKey(t => new { t.AplicationUserId, t.LoyaltyCardId });
         }
     }
 }

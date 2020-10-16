@@ -1,0 +1,16 @@
+﻿@{ 
+    Layout = "_Layout";
+}
+
+<div>
+    <h4>Admin Panel</h4>
+    <hr />
+    <div class="row">
+        <div class="col-md-2">
+            <partial name="_AdminPanelNav" />
+        </div>
+        <div class="col-md-10">
+            @RenderBody()
+        </div>
+    </div>
+</div>

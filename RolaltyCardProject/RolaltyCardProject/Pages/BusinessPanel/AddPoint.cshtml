@@ -1,0 +1,62 @@
+﻿@page
+@model RolaltyCardProject.Pages.CardCreation.AddPointModel
+@{
+    Layout = "_Layout";
+}
+
+@if (Model.AddPointViewModel.Message != null)
+{
+    <div class="alert @Model.AddPointViewModel.Message.GetAlertNavClass() alert-dismissible fade show" role="alert">
+        @Model.AddPointViewModel.Message.Text
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+}
+
+<h4 class="text-center">@Model.AddPointViewModel.ClientCardName</h4>
+
+<form method="post">
+    <div class="row justify-content-center">
+        <div class="col-6">
+            <div class="form-group">
+                <label>Cpf of the client</label>
+                <input asp-for="AddPointViewModel.Cpf" class="form-control" />
+                <span asp-validation-for="AddPointViewModel.Cpf" style="color:red;"></span>
+            </div>
+            <button type="submit" class="btn btn-primary">Add</button>
+            <a asp-page="Index" class="btn btn-danger">Back</a>
+        </div>
+    </div>
+</form>
+
+@if (Model.AddPointViewModel.ClientCard != null)
+{
+    <br />
+    <div class="row justify-content-center">
+        <div class="col-6">
+            <div>
+                <h5>User @Model.AddPointViewModel.ClientCard.AplicationUser.UserName</h5>
+                Number of points: @Model.AddPointViewModel.ClientCard.Points out of @Model.AddPointViewModel.ClientCard.LoyaltyCard.TotalPoints
+                @if (Model.AddPointViewModel.ClientCard.Points < Model.AddPointViewModel.ClientCard.LoyaltyCard.TotalPoints)
+                {
+                    <form method="post" asp-page-handler="Add" 
+                          asp-route-id="@Model.AddPointViewModel.ClientCard.LoyaltyCardId" 
+                          asp-route-userId="@Model.AddPointViewModel.ClientCard.AplicationUserId"
+                          asp-route-name="@Model.AddPointViewModel.ClientCardName">
+                        <button type="submit" class="btn btn-primary" style="margin-top: 10px;">Give Point To User</button>
+                    </form>
+                }
+                else
+                {
+                    <p style="color: limegreen;">Users points has reached the maximum points needed to reclaim the prize! <strong>Please inform the client :)</strong></p>
+                }
+            </div>
+        </div>
+    </div>
+
+}
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

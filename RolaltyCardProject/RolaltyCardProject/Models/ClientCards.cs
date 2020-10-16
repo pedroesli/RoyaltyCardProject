@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
@@ -12,11 +13,14 @@ namespace RolaltyCardProject.Models
         [Key]
         public int LoyaltyCardId { get; set; }
         [Key]
-        public string ClientUserId { get; set; }  
+        public string AplicationUserId { get; set; }
 
-        [ForeignKey("ClientUserId")]
-        public ClientUser ClientUser { get; set; }
+        [ForeignKey("AplicationUserId")]
+        public AplicationUser AplicationUser { get; set; }
         [ForeignKey("LoyaltyCardId")]
         public LoyaltyCard LoyaltyCard { get; set; }
+
+        [DefaultValue(0)]
+        public int Points { get; set; }
     }
 }

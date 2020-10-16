@@ -20,8 +20,8 @@ namespace RolaltyCardProject.Models
         [Display(Name = "Prize Description")]
         public string PrizeDescription { get; set; }
 
-        public string BusinessUserId { get; set; }
-        [ForeignKey("BusinessUserId")]
-        public BusinessUser BusinessUser { get; set; }
+        public string AplicationUserId { get; set; }
+        [ForeignKey("AplicationUserId")]
+        public AplicationUser AplicationUser { get; set; }
     }
 }
