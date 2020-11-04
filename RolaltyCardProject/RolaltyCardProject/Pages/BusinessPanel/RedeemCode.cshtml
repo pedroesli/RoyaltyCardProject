@@ -1,0 +1,29 @@
+﻿@page
+@model RolaltyCardProject.Pages.BusinessPanel.RedeemCodeModel
+@{
+    Layout = "_Layout";
+}
+
+@if (Model.RedeemCodeViewModel.Message != null)
+{
+    <div class="alert @Model.RedeemCodeViewModel.Message.GetAlertNavClass() alert-dismissible fade show" role="alert">
+        @Model.RedeemCodeViewModel.Message.Text
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+}
+
+<form method="post">
+    <div class="row justify-content-center">
+        <div class="col-6">
+            <div class="form-group">
+                <label>Code to redeem</label>
+                <input asp-for="RedeemCodeViewModel.Code" class="form-control" />
+            </div>
+            <button type="submit" class="btn btn-primary">Find</button>
+            <a asp-page="Index" class="btn btn-danger">Back</a>
+        </div>
+    </div>
+</form>
+

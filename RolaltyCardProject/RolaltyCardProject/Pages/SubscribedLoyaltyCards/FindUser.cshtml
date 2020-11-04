@@ -20,7 +20,7 @@
             <div class="form-group">
                 <label>Your Cpf</label>
                 <input asp-for="FindUserViewModel.Cpf" class="form-control" />
-                <span asp-validation-for="FindUserViewModel.Cpf" style="color:red;"></span>
+                <span asp-validation-for="FindUserViewModel.Cpf" class="text-danger"></span>
             </div>
             <button type="submit" class="btn btn-primary">Find</button>
             <a asp-page="../Index" class="btn btn-danger">Back</a>
@@ -30,29 +30,41 @@
 
 @if (Model.FindUserViewModel.ClientCards != null)
 {
-    <br />
-    <table class="table">
-        <thead>
-            <tr>
-                <th>#</th>
-                <th>@Html.DisplayNameFor(n => n.FindUserViewModel.ClientCards.FirstOrDefault().LoyaltyCard.CardName)</th>
-                <th>@Html.DisplayNameFor(n => n.FindUserViewModel.ClientCards.FirstOrDefault().LoyaltyCard.Description)</th>
-                <th>@Html.DisplayNameFor(n => n.FindUserViewModel.ClientCards.FirstOrDefault().Points)</th>
-            </tr>
-        </thead>
-        <tbody>
-            @{
-                int i = 1;
-            }
-            @foreach (var card in Model.FindUserViewModel.ClientCards)
-            {
-                <tr>
-                    <th scope="row">@(i++)</th>
-                    <td>@card.LoyaltyCard.CardName</td>
-                    <td>@card.LoyaltyCard.Description</td>
-                    <td>@card.Points out of @card.LoyaltyCard.TotalPoints</td>
-                </tr>
-            }
-        </tbody>
-    </table>
+    @foreach (var card in Model.FindUserViewModel.ClientCards)
+    {
+        <div class="row justify-content-center">
+            <div class="col-5">
+                <div class="card">
+                    <div class="card-header">
+                        @card.LoyaltyCard.CardName
+                        <small class="text-muted">@card.LoyaltyCard.AplicationUser.CompanyName</small>
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">@card.LoyaltyCard.Header</h5>
+                        <p class="card-text">@card.LoyaltyCard.Description</p>
+                        @if (!card.IsRedeemed)
+                        {
+                            <p class="card-text">
+                                @card.Points out of @card.LoyaltyCard.TotalPoints points
+                                @if (card.Points == card.LoyaltyCard.TotalPoints)
+                                {
+                                    <span class="badge badge-success">Redeem your voucher code!</span>
+                                }
+                            </p>
+                        }
+                        else
+                        {
+                            <p class="card-text">Card has already been redeemed!</p>
+                        }
+                        <a class="btn btn-success" asp-page="VoucherCode" asp-route-userid="@card.AplicationUserId" asp-route-cardid="@card.LoyaltyCardId"><i class="fas fa-award"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br />
+    }
+}
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
 }

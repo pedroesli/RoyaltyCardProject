@@ -15,7 +15,7 @@ namespace RolaltyCardProject.Data
             
         }
         public DbSet<LoyaltyCard> LoyaltyCards { get; set; }
-        public DbSet<AplicationUser> AplicationUsers { get; set; }
+        public DbSet<ApplicationUser> AplicationUsers { get; set; }
         public DbSet<ClientCards> ClientCards { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

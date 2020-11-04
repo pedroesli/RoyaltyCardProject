@@ -16,11 +16,14 @@ namespace RolaltyCardProject.Models
         public string AplicationUserId { get; set; }
 
         [ForeignKey("AplicationUserId")]
-        public AplicationUser AplicationUser { get; set; }
+        public ApplicationUser AplicationUser { get; set; }
         [ForeignKey("LoyaltyCardId")]
         public LoyaltyCard LoyaltyCard { get; set; }
 
         [DefaultValue(0)]
         public int Points { get; set; }
+        public string VoucherCode { get; set; }
+        [DefaultValue(false)]
+        public bool IsRedeemed { get; set; }
     }
 }

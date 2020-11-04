@@ -95,7 +95,7 @@ namespace RolaltyCardProject.Areas.Identity.Pages.Account
                 var userWithCpf = await _db.AplicationUsers.FirstOrDefaultAsync(c => c.Cpf == Input.Cpf);
                 if(userWithCpf == null)
                 {
-                    var user = new AplicationUser
+                    var user = new ApplicationUser
                     {
                         UserName = Input.UserName,
                         Email = Input.Email,

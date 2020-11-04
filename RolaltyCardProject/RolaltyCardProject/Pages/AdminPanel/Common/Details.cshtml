@@ -1,0 +1,48 @@
+﻿@page
+@model RolaltyCardProject.Pages.AdminPanel.Common.DetailsModel
+@{
+    Layout = "_AdminPanelLayout";
+}
+
+<h4>Details</h4>
+
+<div class="row justify-content-center">
+    <div class="col-6">
+        <div class="form-group">
+            <label asp-for="AppUser.UserName"></label>
+            <input asp-for="AppUser.UserName" class="form-control" readonly />
+        </div>
+        <div class="form-group">
+            <label asp-for="AppUser.Email"></label>
+            <input asp-for="AppUser.Email" class="form-control" readonly />
+        </div>
+        <div class="form-group">
+            <label asp-for="AppUser.Cpf"></label>
+            <input asp-for="AppUser.Cpf" class="form-control" readonly />
+        </div>
+
+        @if (Model.AppUser.City != null)
+        {
+            <div class="form-group">
+                <label asp-for="AppUser.City"></label>
+                <input asp-for="AppUser.City" class="form-control" readonly />
+            </div>
+        }
+        @if (Model.AppUser.CompanyName != null)
+        {
+            <div class="form-group">
+                <label asp-for="AppUser.CompanyName"></label>
+                <input asp-for="AppUser.CompanyName" class="form-control" readonly />
+            </div>
+        }
+        @if (Model.AppUser.PhoneNumber != null)
+        {
+            <div class="form-group">
+                <label asp-for="AppUser.PhoneNumber"></label>
+                <input asp-for="AppUser.PhoneNumber" class="form-control" readonly />
+            </div>
+        }
+        <a asp-page="@Model.ReturnUrl" class="btn btn-primary">Return</a>
+    </div>
+</div>
+

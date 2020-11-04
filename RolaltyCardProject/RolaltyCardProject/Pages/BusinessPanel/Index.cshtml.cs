@@ -34,9 +34,8 @@ namespace RolaltyCardProject.Pages.CardCreation
             {
                 return RedirectToPage("/RegisterBusinessAccount/Index");
             }
-            var claimsIdentity =(ClaimsIdentity) User.Identity;
-            var claim = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier);
-            var userId = claim.Value;
+
+            var userId = EasyMethods.GetUserId(User);
 
             ICollection<LoyaltyCard> loyaltyCards = await _db.LoyaltyCards.Where(l => l.AplicationUserId == userId).ToListAsync();
 
@@ -45,6 +44,11 @@ namespace RolaltyCardProject.Pages.CardCreation
                 LoyaltyCards = loyaltyCards,
             };
             return Page();
+        }
+
+        public void OnPost()
+        {
+
         }
 
         public IActionResult OnPostCreate()

@@ -36,6 +36,7 @@ namespace RolaltyCardProject.Pages.SubscribedLoyaltyCards
                 {
                     var clientCards = await _db.ClientCards
                         .Include(c => c.LoyaltyCard)
+                        .Include(c => c.LoyaltyCard.AplicationUser)
                         .AsNoTracking()
                         .Where(c => c.AplicationUserId == user.Id)
                         .ToListAsync();

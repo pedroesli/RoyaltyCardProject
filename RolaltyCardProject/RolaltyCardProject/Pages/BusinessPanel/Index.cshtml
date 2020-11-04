@@ -17,6 +17,9 @@
 <h4 class="text-center">Business panel</h4>
 <br />
 <br />
+<div class="text-right" style="margin-bottom: 10px;">
+    <a asp-page="RedeemCode" class="btn btn-primary">Redeem a voucher code</a>
+</div>
 <form asp-page-handler="Create" method="post">
     <div class="text-right">
         <button class="btn btn-success">New Royalty Card</button>
@@ -34,6 +37,7 @@
         </tr>
     </thead>
     <tbody>
+        
         @if (Model.CardCreationViewModel.LoyaltyCards.Count > 0)
         {
             int i = 1;
@@ -65,6 +69,5 @@
                 </th>
             </tr>
         }
-
     </tbody>
 </table>

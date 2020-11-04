@@ -22,6 +22,6 @@ namespace RolaltyCardProject.Models
 
         public string AplicationUserId { get; set; }
         [ForeignKey("AplicationUserId")]
-        public AplicationUser AplicationUser { get; set; }
+        public ApplicationUser AplicationUser { get; set; }
     }
 }

@@ -32,9 +32,26 @@ namespace RolaltyCardProject.Pages.SubscribedLoyaltyCards
             var userId = EasyMethods.GetUserId(User);
             ClientCards = await _db.ClientCards
                 .Include(c => c.LoyaltyCard)
+                .Include(c => c.LoyaltyCard.AplicationUser)
                 .AsNoTracking()
                 .Where(c => c.AplicationUserId == userId).ToListAsync();
             return Page();
+        }
+
+        public async Task<IActionResult> OnPostDeleteAsync(string userid, int? cardid)
+        {
+            if (userid == null || !cardid.HasValue)
+            {
+                return NotFound("Opps! userid or cardid not found, try again!");
+            }
+
+            var card = await _db.ClientCards.FirstOrDefaultAsync(c => c.AplicationUserId == userid && c.LoyaltyCardId == cardid.Value);
+            if (card != null)
+            {
+                _db.ClientCards.Remove(card);
+                await _db.SaveChangesAsync();
+            }
+            return RedirectToPage("Index");
         }
     }
 }

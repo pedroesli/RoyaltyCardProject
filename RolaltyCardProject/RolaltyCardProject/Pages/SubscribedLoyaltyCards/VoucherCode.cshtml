@@ -1,0 +1,34 @@
+﻿@page
+@model RolaltyCardProject.Pages.SubscribedLoyaltyCards.VoucherCodeModel
+@{
+    Layout = "_Layout";
+}
+<div class="row justify-content-center">
+    <div class="col-5">
+        <div class="card">
+            <div class="card-header">
+                @Model.ClientCard.LoyaltyCard.CardName
+            </div>
+            <div class="card-body">
+                <h5 class="card-title">Your voucher code to redeem your prize</h5>
+                <p class="card-text">@Model.ClientCard.LoyaltyCard.PrizeDescription</p>
+                @if (Model.ClientCard.VoucherCode != null)
+                {
+                    @if (!Model.ClientCard.IsRedeemed)
+                    {
+                        <p class="card-text"><strong>@Model.ClientCard.VoucherCode</strong></p>
+                    }
+                    else
+                    {
+                        <p class="card-text"><strong>Card has already been redeemed!</strong></p>
+                    }
+                }
+                else
+                {
+                    <p class="card-text">You still require <strong>@Model.ClientCard.Points points out of @Model.ClientCard.LoyaltyCard.TotalPoints points</strong> to be able to redeem your prize</p>
+                }
+                <a class="btn btn-primary" asp-page="Index"><i class="fas fa-long-arrow-alt-left"></i></a>
+            </div>
+        </div>
+    </div>
+</div>

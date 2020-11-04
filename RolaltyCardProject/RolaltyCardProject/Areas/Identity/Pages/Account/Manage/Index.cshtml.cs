@@ -35,12 +35,16 @@ namespace RolaltyCardProject.Areas.Identity.Pages.Account.Manage
             [Phone]
             [Display(Name = "Phone number")]
             public string PhoneNumber { get; set; }
+            [Display(Name = "Company Name")]
+            public string CompanyName { get; set; }
+            public string City { get; set; }
         }
 
         private async Task LoadAsync(IdentityUser user)
         {
             var userName = await _userManager.GetUserNameAsync(user);
             var phoneNumber = await _userManager.GetPhoneNumberAsync(user);
+            //var companyName = await _userManager.get
 
             Username = userName;
 

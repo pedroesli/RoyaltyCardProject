@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace RolaltyCardProject.Models
 {
-    public class AplicationUser : IdentityUser
+    public class ApplicationUser : IdentityUser
     {
         [Required]
         public string Cpf { get; set; }
@@ -17,5 +17,7 @@ namespace RolaltyCardProject.Models
         [Display(Name = "Company Name")]
         public string CompanyName { get; set; }
        
+        [Required]
+        public string City { get; set; }
     }
 }

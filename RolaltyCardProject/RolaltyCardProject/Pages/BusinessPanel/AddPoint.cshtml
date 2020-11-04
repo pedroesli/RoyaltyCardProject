@@ -22,7 +22,7 @@
             <div class="form-group">
                 <label>Cpf of the client</label>
                 <input asp-for="AddPointViewModel.Cpf" class="form-control" />
-                <span asp-validation-for="AddPointViewModel.Cpf" style="color:red;"></span>
+                <span asp-validation-for="AddPointViewModel.Cpf" class="text-danger"></span>
             </div>
             <button type="submit" class="btn btn-primary">Add</button>
             <a asp-page="Index" class="btn btn-danger">Back</a>

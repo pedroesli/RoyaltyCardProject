@@ -33,10 +33,20 @@ namespace RolaltyCardProject
                     Configuration.GetConnectionString("DefaultConnection")));
             //services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
             //    .AddEntityFrameworkStores<ApplicationDbContext>();
-            services.AddIdentity<IdentityUser, IdentityRole>(options => options.SignIn.RequireConfirmedEmail = false)
-                .AddDefaultTokenProviders().AddDefaultUI()
-                .AddSignInManager<MySignInManager>()
-                .AddEntityFrameworkStores<ApplicationDbContext>() ;
+            services.AddIdentity<IdentityUser, IdentityRole>(options =>
+            {
+                options.SignIn.RequireConfirmedEmail = false;
+                options.User.RequireUniqueEmail = true;
+                //Remove password restrictions to give user more word freedom
+                options.Password.RequireDigit = false;
+                options.Password.RequireUppercase = false;
+                options.Password.RequiredUniqueChars = 0;
+                options.Password.RequireLowercase = false;
+                options.Password.RequireNonAlphanumeric = false;
+            })
+            .AddDefaultTokenProviders().AddDefaultUI()
+            .AddSignInManager<MySignInManager>()
+            .AddEntityFrameworkStores<ApplicationDbContext>();
             services.AddRazorPages().AddRazorRuntimeCompilation();
         }
 

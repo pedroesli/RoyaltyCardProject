@@ -16,6 +16,7 @@
                 <label asp-for="Username"></label>
                 <input asp-for="Username" class="form-control" disabled />
             </div>
+            @*Business user details*@
             @if (!User.IsInRole(StaticDetails.ClientEndUser))
             {
                 <div class="form-group">
